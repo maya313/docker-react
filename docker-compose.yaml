@@ -1,12 +1,21 @@
 version: '3.9'
 
 services:
-  react-app:
+  dev_react_app:
     build:
       context: .
       dockerfile: Dockerfile
+      target: dev
     volumes:
       - ./react-app:/usr/src/app
     command: sh -c "cd react-app && npm start"
     ports:
       - "3000:3000"
+  prod_react_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    image: maya/react_app
+    ports:
+      - "80:80"
